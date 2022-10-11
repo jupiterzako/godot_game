@@ -18,9 +18,15 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 1920, 1080 )
 
 [node name="Player" type="Area2D" parent="."]
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="Player"]
+[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
 position = Vector2( 482, 290 )
 texture = ExtResource( 2 )
 script = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="KinematicBody2D"]
+position = Vector2( -1, -1 )
+polygon = PoolVector2Array( 455, 267, 454, 315, 513, 319, 512, 264 )
