@@ -17,8 +17,6 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 1920, 1080 )
 
-[node name="Player" type="Area2D" parent="."]
-
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 script = ExtResource( 4 )
 

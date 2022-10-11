@@ -6,6 +6,11 @@ export (int) var basic_damage = 10
 export (int) var basic_fireRate = 5
 export (int) var basic_numberOfBullets = 1
 
+#func game_over():
+
+#func death():
+#	if basic_health < 0
+#		game_over()
 
 var velocity = Vector2()
 
