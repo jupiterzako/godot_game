@@ -1,30 +1,42 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/EnemyMine.gd" type="Script" id=1]
-[ext_resource path="res://assets/icon.png" type="Texture" id=2]
+[ext_resource path="res://assets/Mine.png" type="Texture" id=2]
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 64, 64 )
+region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ SubResource( 1 ) ],
+"frames": [ SubResource( 3 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
 [node name="EnemyMine" type="KinematicBody2D"]
+scale = Vector2( 3, 3 )
 collision_layer = 2
 collision_mask = 3
 script = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2( -1, -0.799999 )
-scale = Vector2( 1, 0.99569 )
-polygon = PoolVector2Array( -29, -29, -29, 29, 31, 29, 31, -29 )
+position = Vector2( 1.04167, 1.20001 )
+scale = Vector2( 1e-05, 1e-05 )
+polygon = PoolVector2Array( -9.08696, -9.65793, -5.6087, -5.10891, -7.34783, -1.60966, -11.1739, -0.909815, -7.34783, 0.489884, -5.95653, 2.93936, -9.08696, 7.48838, -4.56522, 4.33906, -1.78261, 5.73875, -0.739134, 9.58792, -0.0434818, 5.73875, 3.43478, 4.33906, 7.60869, 7.48838, 4.82608, 3.63921, 6.56522, -0.209965, 10.0435, -0.55989, 6.21739, -1.25974, 4.47826, -4.75899, 8.30435, -9.30801, 3.78261, -6.15868, 0.304344, -7.55838, -0.739134, -11.4076, -1.43479, -7.55838, -4.91305, -5.80876 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2( 1.46354, 1.21155 )
+scale = Vector2( 1.70473, 1.64871 )
+polygon = PoolVector2Array( -0.662983, -6.8002, -1.05405, -4.37406, -3.0094, -3.36316, -5.35581, -5.58713, -3.40046, -2.95881, -4.1826, -1.74574, -4.37814, -0.937026, -6.72455, -0.532669, -4.37814, 0.276044, -3.596, 1.69129, -5.35581, 4.31961, -2.81386, 2.50001, -1.05405, 3.30872, -0.662983, 5.53268, -0.271914, 3.30872, 1.68343, 2.50001, 4.02984, 4.31961, 2.46557, 2.09565, 3.44324, -0.128312, 5.59412, -0.330491, 3.44324, -0.734847, 2.27003, -2.75663, 4.42091, -5.38495, 1.87896, -3.56534, -0.0763796, -4.37406 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

@@ -20,21 +20,10 @@ func _ready():
 	add_child(timer)
 	timer.connect("timeout",self,"_on_timeout")
 	
-
 		
-		
-
-	
-	
-#	rotation_degrees = rotation_degrees + 90
-
-#move_and_collide(delta*Speed)
-
-#func is_outside_view_bounds():
-#	return position.x>OS.get_screen_size().x or position.x<0.0\
-#		or position.y>OS.get_screen_size().y or position.y<0.0
-		
-#func _process(delta):
-#	if is_outside_view_bounds():
-#		queue_free()
-#	move_local_x(delta*Speed)		
+func _on_Area2D_body_entered(body):
+	if body.get_name()=="Player":
+		var effect = explode.instance()
+		effect.global_position = global_position
+		get_tree().current_scene.add_child(effect)
+		queue_free()
