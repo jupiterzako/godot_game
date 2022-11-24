@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 ## variables
 
-export (int) var basic_speed = 100
+export (int) var basic_speed = 1000
 export (int) var basic_health = 100
 var health = basic_health
 export (int) var basic_damage = 10
@@ -27,18 +27,46 @@ func _process(delta):
 	$Node2D.look_at(get_global_mouse_position())
 
 ## movement
-
+var velocity2 = Vector2(0,0)
 func movement():
-	velocity = Vector2()
-	if Input.is_action_pressed("right"):
-		velocity.x += 1
-	if Input.is_action_pressed("left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("down"):
-		velocity.y += 1
-	if Input.is_action_pressed("up"):
-		velocity.y -= 1
-	velocity = velocity.normalized() * basic_speed
+	if Input.is_action_just_pressed("dash"):
+		basic_speed = 100000
+	else:
+		basic_speed = 1000
+		
+	var pressedX = false
+	var pressedY = false
+	
+	if Input.is_action_pressed("right") and velocity2.x < 1:
+		velocity2.x += 0.01
+		pressedX = true
+	if Input.is_action_pressed("left") and velocity2.x > -1:
+		velocity2.x -= 0.01
+		pressedX = true
+	if Input.is_action_pressed("down") and velocity2.y < 1:
+		velocity2.y += 0.01
+		pressedY = true
+	if Input.is_action_pressed("up") and velocity2.y > -1:
+		velocity2.y -= 0.01
+		pressedY = true
+		
+	if pressedX == false:
+		if velocity2.x > 0:
+			velocity2.x -= 0.01
+		elif velocity2.x < 0:
+			velocity2.x += 0.01
+		else:
+			velocity2.x = 0
+			
+	if pressedY == false:
+		if velocity2.y > 0:
+			velocity2.y -= 0.01
+		elif velocity2.y < 0:
+			velocity2.y += 0.01
+		else:
+			velocity2.y = 0
+
+	velocity = velocity2 * basic_speed
 
 ## shooting
 
@@ -49,6 +77,7 @@ func shoot():
 	Bullet.position = $Node2D/gun.global_position
 
 	Bullet.velocity = get_global_mouse_position() - Bullet.position
+
 
 func death():
 	if health == 0:
