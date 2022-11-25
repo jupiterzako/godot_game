@@ -7,6 +7,9 @@ var ShootBullet := preload("res://scenes/BulletEnemy.tscn")
 var time = 0
 var maxtime = 0.2
 var explode :=preload("res://scenes/enemies/EnemyExplosion.tscn")
+var timer = null
+var delay = 0.5
+var can_shoot = true
 
 
 func _physics_process(delta):
@@ -23,16 +26,25 @@ func _on_timeout():
 
 
 func _ready():
-	if time > 0:
-		return false
-	time = maxtime
-	return true
+	timer = Timer.new()
+	timer.set_one_shot(true)
+	timer.set_wait_time(delay)
+	timer.connect("timeout",self,"on_timeout_complete")
+	add_child(timer)
+	
+	
+	
+func on_timeout_complete():
+	can_shoot = true
 
 func _process(delta):
+	if(can_shoot==true):
+		shoot()
+		can_shoot = false
+		timer.start()
 	
-	shoot()
 		
-	$Node2D.look_at(player.position)
+	#$Node2D.look_at(player.position)
 	
 	
 func shoot():
@@ -42,6 +54,7 @@ func shoot():
 	Bullet.position = $Node2D/gun.global_position
 	
 	Bullet.velocity = player.position - Bullet.position
+	
 	
 func _on_Area2D_body_entered(body):
 	if body.get_name()=="Player":
