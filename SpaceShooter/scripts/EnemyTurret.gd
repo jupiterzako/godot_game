@@ -11,6 +11,8 @@ var timer = null
 var delay = 0.5
 var can_shoot = true
 
+onready var phealth = get_parent().get_node("Player/HEALTH")
+
 
 func _physics_process(delta):
 	look_at(player.global_position)
@@ -62,12 +64,9 @@ func _on_Area2D_body_entered(body):
 		effect.global_position = global_position
 		get_tree().current_scene.add_child(effect)
 		queue_free()
+		phealth.value -=10
 	if "Bullet" in body.name:
 		var effect = explode.instance()
 		effect.global_position = global_position
 		get_tree().current_scene.add_child(effect)
 		queue_free()
-
-func death():
-	get_tree().reload_current_scene()
-

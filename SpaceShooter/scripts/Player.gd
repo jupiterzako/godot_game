@@ -3,8 +3,8 @@ extends KinematicBody2D
 ## variables
 
 export (int) var basic_speed = 1000
-export (int) var basic_health = 100
-var health = basic_health
+#export (int) var basic_health = 100
+var health = 100
 export (int) var basic_damage = 10
 export (int) var basic_fireRate = 5
 export (int) var basic_numberOfBullets = 1
@@ -25,6 +25,8 @@ func _process(delta):
 		shoot()
 		
 	$Node2D.look_at(get_global_mouse_position())
+	if health<0:
+		death()
 
 ## movement
 var velocity2 = Vector2(0,0)
@@ -80,22 +82,20 @@ func shoot():
 
 
 func death():
-	if health == 0:
-		get_tree().reload_current_scene()
+	get_tree().reload_current_scene()
+		
+
 
 func _on_Area2D_body_entered(body):
 	if "Bullet" in body.name:
 		var effect = explode.instance()
 		effect.global_position = global_position
 		get_tree().current_scene.add_child(effect)
-		health=health-10
 	if "EnemyKamikaze" in body.name:
-		health=health-10
+		health -=10
 	if "EnemyMine" in body.name:
-		health=health-10
+		health -=10
 	if "EnemyTurret" in body.name:
-		health=health-10
-	if health == 0:
-		death()
+		health -=10
 
-	
+
