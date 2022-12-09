@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/ParallaxBackground4.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/background2.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/enemies/EnemyKamikaze.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/enemies/EnemyMine.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/enemies/EnemyTurret.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scripts/World.gd" type="Script" id=6]
-[ext_resource path="res://scenes/HEALTH.gd" type="Script" id=7]
+[ext_resource path="res://scripts/HEALTH.gd" type="Script" id=7]
+[ext_resource path="res://scripts/HEAT.gd" type="Script" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 0, 0, 1 )
@@ -27,7 +28,20 @@ value = 100.0
 allow_lesser = true
 script = ExtResource( 7 )
 
-[node name="ParallaxBackground4" parent="." instance=ExtResource( 2 )]
+[node name="HEAT" type="ProgressBar" parent="Player"]
+visible = false
+light_mask = 1048575
+margin_left = -929.0
+margin_top = -516.0
+margin_right = -670.0
+margin_bottom = -464.0
+custom_styles/fg = SubResource( 1 )
+max_value = 10.0
+value = 1.0
+allow_greater = true
+allow_lesser = true
+percent_visible = false
+script = ExtResource( 8 )
 
 [node name="EnemyKamikaze" parent="." instance=ExtResource( 3 )]
 position = Vector2( 404, -31 )
@@ -40,6 +54,8 @@ autostart = true
 
 [node name="EnemyTurret" parent="." instance=ExtResource( 5 )]
 position = Vector2( 347, 37 )
+
+[node name="ParallaxBackground3" parent="." instance=ExtResource( 2 )]
 
 [connection signal="body_entered" from="." to="." method="_on_world_body_entered"]
 [connection signal="body_entered" from="." to="Player" method="_on_world_body_entered"]
