@@ -17,6 +17,8 @@ var velocity = Vector2()
 ## physics
 
 func _physics_process(delta):
+	if$HEALTH.value <=0:
+		death()
 	movement()
 	velocity = move_and_slide(velocity)
 
@@ -44,11 +46,12 @@ func _process(delta):
 	print(timer.time_left, " -> ", heat)
 	if heat <= 0 :
 		overheated=false
-	if heat >= 6 or overheated:
+	if heat >= 7 or overheated:
 		overheated = true
 		heat -= 5 * delta
 		can_shoot= false
 		timer.start()
+		$HEAT.value = 0
 		
 	if(can_shoot and !overheated and timer.time_left <= 0):
 		$Node2D.look_at(get_global_mouse_position())
@@ -112,6 +115,7 @@ func shoot():
 	Bullet.position = $Node2D/gun.global_position
 
 	Bullet.velocity = get_global_mouse_position() - Bullet.position
+	$HEAT.value +=1
 
 
 func death():

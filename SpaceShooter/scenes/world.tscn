@@ -29,14 +29,14 @@ allow_lesser = true
 script = ExtResource( 7 )
 
 [node name="HEAT" type="ProgressBar" parent="Player"]
-visible = false
 light_mask = 1048575
-margin_left = -929.0
-margin_top = -516.0
-margin_right = -670.0
-margin_bottom = -464.0
+margin_left = -931.0
+margin_top = -436.0
+margin_right = -672.0
+margin_bottom = -384.0
 custom_styles/fg = SubResource( 1 )
-max_value = 10.0
+min_value = 1.0
+max_value = 11.0
 value = 1.0
 allow_greater = true
 allow_lesser = true

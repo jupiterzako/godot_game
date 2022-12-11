@@ -5,10 +5,11 @@
 [node name="ParallaxBackground3" type="ParallaxBackground"]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
-motion_mirroring = Vector2( 1800, 1000 )
+motion_mirroring = Vector2( 1920, 1080 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxLayer"]
 
 [node name="Background2" type="Sprite" parent="ParallaxLayer/Sprite"]
-position = Vector2( 622, 316 )
+position = Vector2( 962, 543 )
+scale = Vector2( 1.04, 1.067 )
 texture = ExtResource( 1 )
