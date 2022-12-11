@@ -67,6 +67,9 @@ func _process(delta):
 ## movement
 var velocity2 = Vector2(0,0)
 func movement():
+	if $HEALTH.value <= 0:
+		death()
+	
 	if Input.is_action_just_pressed("dash"):
 		basic_speed = 100000
 	else:
