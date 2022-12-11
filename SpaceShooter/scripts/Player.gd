@@ -122,8 +122,7 @@ func shoot():
 
 
 func death():
-	if health <= 0:
-		get_tree().reload_current_scene()
+	get_tree().reload_current_scene()
 
 func _on_Area2D_body_entered(body):
 	if "Bullet" in body.name:
