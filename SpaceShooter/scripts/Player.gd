@@ -123,6 +123,7 @@ func shoot():
 
 func death():
 	get_tree().reload_current_scene()
+	Global.points = 0
 
 func _on_Area2D_body_entered(body):
 	if "Bullet" in body.name:

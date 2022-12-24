@@ -14,7 +14,7 @@ func _on_Area2D_body_entered(body):
 		effect.global_position = global_position
 		get_tree().current_scene.add_child(effect)
 		queue_free()
-	
+		Global.points +=1
 		
 func death():
 	get_tree().reload_current_scene()
