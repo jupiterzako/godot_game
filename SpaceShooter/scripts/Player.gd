@@ -47,11 +47,13 @@ func _process(delta):
 	if heat <= 0 :
 		overheated=false
 	if heat >= 7 or overheated:
+		$reload.play()
 		overheated = true
 		heat -= 5 * delta
 		can_shoot= false
 		timer.start()
 		$HEAT.value = 0
+		
 		
 	if(can_shoot and !overheated and timer.time_left <= 0):
 		$Node2D.look_at(get_global_mouse_position())

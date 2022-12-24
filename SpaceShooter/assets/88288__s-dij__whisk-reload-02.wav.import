@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/88288__s-dij__whisk-reload-02.wav-2e03c9964d2f8622f0e3e3437a80745b.sample"
+
+[deps]
+
+source_file="res://assets/88288__s-dij__whisk-reload-02.wav"
+dest_files=[ "res://.import/88288__s-dij__whisk-reload-02.wav-2e03c9964d2f8622f0e3e3437a80745b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

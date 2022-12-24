@@ -19,6 +19,7 @@ func _ready():
 	timer.autostart = true
 	add_child(timer)
 	timer.connect("timeout",self,"_on_timeout")
+	$AudioStreamPlayer2D.play()
 	
 
 		
