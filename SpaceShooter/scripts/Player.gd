@@ -75,7 +75,7 @@ func movement():
 	if Input.is_action_just_pressed("dash"):
 		basic_speed = 100000
 	else:
-		basic_speed = 1000
+		basic_speed = 400
 		
 	var pressedX = false
 	var pressedY = false
