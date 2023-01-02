@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 ## variables
 
-export (int) var basic_speed = 1000
+export (int) var basic_speed = 400
 #export (int) var basic_health = 100
 var health = 100
 export (int) var basic_damage = 10
@@ -43,7 +43,7 @@ var heat = 0
 var overheated = false
 	
 func _process(delta):
-	print(timer.time_left, " -> ", heat)
+	#print(timer.time_left, " -> ", heat)
 	if heat <= 0 :
 		overheated=false
 	if heat >= 7 or overheated:
@@ -62,7 +62,7 @@ func _process(delta):
 			heat += 100 * delta
 			can_shoot=false
 			timer.start()
-			print(heat)
+			#print(heat)
 	
 
 
