@@ -124,8 +124,8 @@ func shoot():
 
 
 func death():
-	get_tree().reload_current_scene()
-	Global.points = 0
+	get_tree().change_scene("res://scenes/GameOver.tscn")
+	
 
 func _on_Area2D_body_entered(body):
 	if "Bullet" in body.name:
